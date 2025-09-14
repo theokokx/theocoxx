@@ -7,7 +7,7 @@
   <style>
     body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; line-height:1.6; }
     header { text-align:center; padding:50px 20px; background:#222; }
-    header img { max-width:300px; border-radius:10px; }
+    header img { max-width:100%; height:auto; border-radius:10px; }
     header h1 { font-size:2.5em; margin:20px 0 0; }
     main { max-width:700px; margin:20px auto; padding:0 20px; text-align:center; }
     select { font-size:1em; padding:10px; margin-top:20px; width:100%; max-width:400px; border-radius:6px; }
@@ -15,6 +15,14 @@
     footer { background:#222; text-align:center; padding:20px; margin-top:40px; }
     footer a { color:#fff; margin:0 10px; text-decoration:none; }
     footer img { height:40px; vertical-align:middle; margin-right:10px; }
+
+    /* Mobile adjustments */
+    @media screen and (max-width: 600px) {
+      header h1 { font-size:2em; }
+      select { font-size:1.3em; padding:12px; }
+      main { padding:0 10px; }
+      audio { width:100%; }
+    }
   </style>
 </head>
 <body>
@@ -28,14 +36,35 @@
 <main>
   <label for="trackSelect">Select a track to preview:</label>
   <select id="trackSelect">
-    <option value="https://suno.com/s/ntx2oRMFO8874pU8">Track 1: Empire Relay</option>
-    <option value="https://archive.org/download/samplemp3/sample2.mp3">Track 2: Title Here</option>
-    <option value="https://archive.org/download/samplemp3/sample3.mp3">Track 3: Title Here</option>
-    <!-- Add options up to Track 25 -->
+    <option value="https://suno.com/s/ntx2oRMFO8874pU8">Track 1: Empire Realy</option>
+    <option value="https://suno.com/s/placeholder">Track 2: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 3: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 4: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 5: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 6: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 7: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 8: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 9: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 10: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 11: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 12: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 13: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 14: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 15: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 16: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 17: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 18: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 19: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 20: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 21: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 22: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 23: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 24: Title Here</option>
+    <option value="https://suno.com/s/placeholder">Track 25: Title Here</option>
   </select>
 
   <audio id="audioPlayer" controls>
-    <source src="https://archive.org/download/samplemp3/sample1.mp3" type="audio/mpeg">
+    <source src="https://suno.com/s/ntx2oRMFO8874pU8" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 </main>
@@ -63,11 +92,8 @@
   let previewTimeout;
 
   trackSelect.addEventListener('change', function() {
-    // Clear any previous timeout
-    clearTimeout(previewTimeout);
-
-    // Update audio source
-    audioPlayer.src = this.value;
+    clearTimeout(previewTimeout);       // Clear previous timeout
+    audioPlayer.src = this.value;       // Update source
     audioPlayer.currentTime = 0;
     audioPlayer.play();
 
@@ -78,9 +104,9 @@
     }, maxDuration * 1000);
   });
 
-  // Optional: Stop timer if user manually pauses
   audioPlayer.addEventListener('pause', () => clearTimeout(previewTimeout));
 </script>
 
 </body>
 </html>
+
