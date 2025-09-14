@@ -1,84 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE OCO XX</title>
-<style>
-  body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; line-height:1.6; }
-  header { text-align:center; padding:50px 20px; background:#222; }
-  header img { max-width:100%; height:auto; border-radius:10px; }
-  header h1 { font-size:2.5em; margin:20px 0 0; }
-  main { max-width:700px; margin:20px auto; padding:0 20px; text-align:center; }
-  select { font-size:1em; padding:10px; margin-top:20px; width:100%; max-width:400px; border-radius:6px; }
-  iframe { margin-top:20px; width:100%; height:300px; border:none; border-radius:6px; }
-  footer { background:#222; text-align:center; padding:20px; margin-top:40px; }
-  footer a { color:#fff; margin:0 10px; text-decoration:none; }
-  footer img { height:40px; vertical-align:middle; margin-right:10px; }
-
-  /* Mobile adjustments */
-  @media screen and (max-width: 600px) {
-    header h1 { font-size:2em; }
-    select { font-size:1.3em; padding:12px; }
-    iframe { height:200px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE OCO XX - Album Preview</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: #eee;
+      text-align: center;
+    }
+    header {
+      padding: 20px;
+    }
+    header img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+    h1 {
+      margin-top: 10px;
+      font-size: 2rem;
+      color: #f4c542;
+    }
+    main {
+      padding: 20px;
+    }
+    select {
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: none;
+    }
+    iframe, video {
+      margin-top: 20px;
+      width: 90%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    footer img {
+      height: 40px;
+      vertical-align: middle;
+    }
+    footer a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #f4c542;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <img src="images/Borderline (album cover).jpg" alt="THE OCO XX Album Cover">
+    <h1>THE OCO XX</h1>
+  </header>
 
-<header>
-  <img src="https://via.placeholder.com/300x300" alt="THE OCO XX Album Cover">
-  <h1>THE OCO XX</h1>
-  <p><a href="blog.html" style="color:#0af;">Latest Updates</a></p>
-</header>
+  <main>
+    <h2>Track Previews</h2>
+    <label for="trackSelect">Choose a track:</label>
+    <br>
+    <select id="trackSelect" onchange="loadTrack()">
+      <option value="">-- Select a track --</option>
+      <option value="https://www.youtube.com/embed/wgOkZYPabbc">01 - Empire Realy</option>
+      <option value="https://www.youtube.com/embed/">02 - Track Title 2</option>
+      <option value="https://www.youtube.com/embed/">03 - Track Title 3</option>
+      <!-- Add more up to 25 -->
+    </select>
 
-<main>
-  <label for="trackSelect">Select a track:</label>
-  <select id="trackSelect">
-    <option value="https://www.youtube.com/embed/wgOkZYPabbc">Track 1: Empire Realy</option>
-    <option value="https://www.youtube.com/embed/PLACEHOLDER2">Track 2: Title Here</option>
-    <option value="https://www.youtube.com/embed/PLACEHOLDER3">Track 3: Title Here</option>
-    <option value="https://www.youtube.com/embed/PLACEHOLDER4">Track 4: Title Here</option>
-    <option value="https://www.youtube.com/embed/PLACEHOLDER5">Track 5: Title Here</option>
-    <!-- Continue up to Track 25 -->
-  </select>
+    <div id="player"></div>
+  </main>
 
-  <iframe id="videoPlayer" src="https://www.youtube.com/embed/wgOkZYPabbc" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <footer>
+    <img src="images/TK_logo_small.jpg" alt="Logo">
+    <div>
+      <a href="about.html">About</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="updates.html">Latest Updates</a>
+    </div>
+  </footer>
 
-  <p id="fullLink" style="margin-top:10px;">
-    <a href="https://bandcamp.com/track/1" target="_blank" style="color:#0af;">Listen to full track</a>
-  </p>
-</main>
-
-<footer>
-  <div>
-    <img src="https://via.placeholder.com/40" alt="Logo"> THE OCO XX
-  </div>
-  <div class="social-links" style="margin-top:10px;">
-    <a href="#">Facebook</a>
-    <a href="#">Twitter</a>
-    <a href="#">Instagram</a>
-    <a href="#">YouTube</a>
-  </div>
-  <div style="margin-top:10px;">
-    <a href="about.html">About</a> | <a href="contact.html">Contact</a>
-  </div>
-</footer>
-
-<script>
-  const trackSelect = document.getElementById('trackSelect');
-  const videoPlayer = document.getElementById('videoPlayer');
-  const fullLink = document.getElementById('fullLink');
-
-  trackSelect.addEventListener('change', function() {
-    // Update YouTube embed
-    videoPlayer.src = this.value;
-
-    // Update full track link (replace placeholders with real URLs)
-    const trackIndex = this.selectedIndex + 1; // simple example
-    fullLink.innerHTML = `<a href="https://bandcamp.com/track/${trackIndex}" target="_blank" style="color:#0af;">Listen to full track</a>`;
-  });
-</script>
-
+  <script>
+    function loadTrack() {
+      const url = document.getElementById("trackSelect").value;
+      const playerDiv = document.getElementById("player");
+      if (url) {
+        playerDiv.innerHTML = `<iframe src="${url}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      } else {
+        playerDiv.innerHTML = "";
+      }
+    }
+  </script>
 </body>
 </html>
