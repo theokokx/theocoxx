@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE OCO XX</title>
-  <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; line-height:1.6; }
-    header { text-align:center; padding:50px 20px; background:#222; }
-    header img { max-width:100%; height:auto; border-radius:10px; }
-    header h1 { font-size:2.5em; margin:20px 0 0; }
-    main { max-width:700px; margin:20px auto; padding:0 20px; text-align:center; }
-    select { font-size:1em; padding:10px; margin-top:20px; width:100%; max-width:400px; border-radius:6px; }
-    audio { margin-top:20px; width:100%; outline:none; }
-    footer { background:#222; text-align:center; padding:20px; margin-top:40px; }
-    footer a { color:#fff; margin:0 10px; text-decoration:none; }
-    footer img { height:40px; vertical-align:middle; margin-right:10px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE OCO XX</title>
+<style>
+  body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; line-height:1.6; }
+  header { text-align:center; padding:50px 20px; background:#222; }
+  header img { max-width:100%; height:auto; border-radius:10px; }
+  header h1 { font-size:2.5em; margin:20px 0 0; }
+  main { max-width:700px; margin:20px auto; padding:0 20px; text-align:center; }
+  select { font-size:1em; padding:10px; margin-top:20px; width:100%; max-width:400px; border-radius:6px; }
+  iframe { margin-top:20px; width:100%; height:300px; border:none; border-radius:6px; }
+  footer { background:#222; text-align:center; padding:20px; margin-top:40px; }
+  footer a { color:#fff; margin:0 10px; text-decoration:none; }
+  footer img { height:40px; vertical-align:middle; margin-right:10px; }
 
-    /* Mobile adjustments */
-    @media screen and (max-width: 600px) {
-      header h1 { font-size:2em; }
-      select { font-size:1.3em; padding:12px; }
-      main { padding:0 10px; }
-      audio { width:100%; }
-    }
-  </style>
+  /* Mobile adjustments */
+  @media screen and (max-width: 600px) {
+    header h1 { font-size:2em; }
+    select { font-size:1.3em; padding:12px; }
+    iframe { height:200px; }
+  }
+</style>
 </head>
 <body>
 
@@ -34,39 +33,21 @@
 </header>
 
 <main>
-  <label for="trackSelect">Select a track to preview:</label>
+  <label for="trackSelect">Select a track:</label>
   <select id="trackSelect">
-    <option value="https://suno.com/s/ntx2oRMFO8874pU8">Track 1: Empire Realy</option>
-    <option value="https://suno.com/s/placeholder">Track 2: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 3: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 4: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 5: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 6: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 7: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 8: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 9: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 10: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 11: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 12: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 13: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 14: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 15: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 16: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 17: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 18: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 19: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 20: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 21: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 22: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 23: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 24: Title Here</option>
-    <option value="https://suno.com/s/placeholder">Track 25: Title Here</option>
+    <option value="https://www.youtube.com/embed/wgOkZYPabbc">Track 1: Empire Realy</option>
+    <option value="https://www.youtube.com/embed/PLACEHOLDER2">Track 2: Title Here</option>
+    <option value="https://www.youtube.com/embed/PLACEHOLDER3">Track 3: Title Here</option>
+    <option value="https://www.youtube.com/embed/PLACEHOLDER4">Track 4: Title Here</option>
+    <option value="https://www.youtube.com/embed/PLACEHOLDER5">Track 5: Title Here</option>
+    <!-- Continue up to Track 25 -->
   </select>
 
-  <audio id="audioPlayer" controls>
-    <source src="https://suno.com/s/ntx2oRMFO8874pU8" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <iframe id="videoPlayer" src="https://www.youtube.com/embed/wgOkZYPabbc" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+  <p id="fullLink" style="margin-top:10px;">
+    <a href="https://bandcamp.com/track/1" target="_blank" style="color:#0af;">Listen to full track</a>
+  </p>
 </main>
 
 <footer>
@@ -86,27 +67,18 @@
 
 <script>
   const trackSelect = document.getElementById('trackSelect');
-  const audioPlayer = document.getElementById('audioPlayer');
-  const maxDuration = 30; // Preview duration in seconds
-
-  let previewTimeout;
+  const videoPlayer = document.getElementById('videoPlayer');
+  const fullLink = document.getElementById('fullLink');
 
   trackSelect.addEventListener('change', function() {
-    clearTimeout(previewTimeout);       // Clear previous timeout
-    audioPlayer.src = this.value;       // Update source
-    audioPlayer.currentTime = 0;
-    audioPlayer.play();
+    // Update YouTube embed
+    videoPlayer.src = this.value;
 
-    // Stop playback after maxDuration
-    previewTimeout = setTimeout(() => {
-      audioPlayer.pause();
-      audioPlayer.currentTime = 0;
-    }, maxDuration * 1000);
+    // Update full track link (replace placeholders with real URLs)
+    const trackIndex = this.selectedIndex + 1; // simple example
+    fullLink.innerHTML = `<a href="https://bandcamp.com/track/${trackIndex}" target="_blank" style="color:#0af;">Listen to full track</a>`;
   });
-
-  audioPlayer.addEventListener('pause', () => clearTimeout(previewTimeout));
 </script>
 
 </body>
 </html>
-
