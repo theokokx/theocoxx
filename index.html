@@ -3,59 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Blog</title>
+  <title>THE OCO XX</title>
   <style>
-    body { margin:0; font-family: Arial, sans-serif; line-height:1.6; background:#f4f4f4; color:#333;}
-    header {
-      background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
-      color: white; text-align: center; padding: 120px 20px;
-    }
-    header h1 { margin:0; font-size:3em; text-shadow: 2px 2px 5px rgba(0,0,0,0.5);}
-    main { max-width:800px; margin:20px auto; padding:0 20px;}
-    article { background:white; padding:20px; margin-bottom:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-    article h2 { margin-top:0;}
-    footer { background:#333; color:white; text-align:center; padding:20px;}
-    footer a { color:white; margin:0 10px; text-decoration:none; }
+    body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; line-height:1.6; }
+    header { text-align:center; padding:50px 20px; background:#222; }
+    header img { max-width:300px; border-radius:10px; }
+    header h1 { font-size:2.5em; margin:20px 0 0; }
+    main { max-width:700px; margin:20px auto; padding:0 20px; text-align:center; }
+    select { font-size:1em; padding:10px; margin-top:20px; width:100%; max-width:400px; border-radius:6px; }
+    audio { margin-top:20px; width:100%; outline:none; }
+    footer { background:#222; text-align:center; padding:20px; margin-top:40px; }
+    footer a { color:#fff; margin:0 10px; text-decoration:none; }
     footer img { height:40px; vertical-align:middle; margin-right:10px; }
-    nav.footer-nav { margin-top:10px; }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>My Blog</h1>
+  <img src="https://via.placeholder.com/300x300" alt="THE OCO XX Album Cover">
+  <h1>THE OCO XX</h1>
+  <p><a href="blog.html" style="color:#0af;">Latest Updates</a></p>
 </header>
 
 <main>
-  <article>
-    <h2>First Post Title</h2>
-    <small>September 14, 2025</small>
-    <p>This is a sample post. You can edit this content and add more posts as needed.</p>
-  </article>
+  <label for="trackSelect">Select a track to preview:</label>
+  <select id="trackSelect">
+    <option value="https://archive.org/download/samplemp3/sample1.mp3">Track 1: Title Here</option>
+    <option value="https://archive.org/download/samplemp3/sample2.mp3">Track 2: Title Here</option>
+    <option value="https://archive.org/download/samplemp3/sample3.mp3">Track 3: Title Here</option>
+    <!-- Add options up to Track 25 -->
+  </select>
 
-  <article>
-    <h2>Second Post Title</h2>
-    <small>September 13, 2025</small>
-    <p>Another sample post. Each post is an article in your HTML file.</p>
-  </article>
+  <audio id="audioPlayer" controls>
+    <source src="https://archive.org/download/samplemp3/sample1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 </main>
 
 <footer>
   <div>
-    <img src="https://via.placeholder.com/40" alt="Logo">
-    My Blog Footer
-  </div>
-  <div class="footer-nav">
-    <a href="#">About</a> | 
-    <a href="#">Contact</a>
+    <img src="https://via.placeholder.com/40" alt="Logo"> THE OCO XX
   </div>
   <div class="social-links" style="margin-top:10px;">
     <a href="#">Facebook</a>
     <a href="#">Twitter</a>
     <a href="#">Instagram</a>
-    <a href="#">LinkedIn</a>
+    <a href="#">YouTube</a>
+  </div>
+  <div style="margin-top:10px;">
+    <a href="about.html">About</a> | <a href="contact.html">Contact</a>
   </div>
 </footer>
+
+<script>
+  const trackSelect = document.getElementById('trackSelect');
+  const audioPlayer = document.getElementById('audioPlayer');
+  const maxDuration = 30; // Preview duration in seconds
+
+  let previewTimeout;
+
+  trackSelect.addEventListener('change', function() {
+    // Clear any previous timeout
+    clearTimeout(previewTimeout);
+
+    // Update audio source
+    audioPlayer.src = this.value;
+    audioPlayer.currentTime = 0;
+    audioPlayer.play();
+
+    // Stop playback after maxDuration
+    previewTimeout = setTimeout(() => {
+      audioPlayer.pause();
+      audioPlayer.currentTime = 0;
+    }, maxDuration * 1000);
+  });
+
+  // Optional: Stop timer if user manually pauses
+  audioPlayer.addEventListener('pause', () => clearTimeout(previewTimeout));
+</script>
 
 </body>
 </html>
