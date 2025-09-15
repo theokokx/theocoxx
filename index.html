@@ -13,18 +13,26 @@
       color: #eee;
       text-align: center;
     }
-    header {
-      padding: 20px;
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 10px;
     }
+
     header img {
-      max-width: 90%;
+      width: 100%;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
-    main {
-      padding: 20px;
+
+    h1 {
+      margin-top: 10px;
+      font-size: 2rem;
+      color: #eee;
     }
+
     select {
       padding: 10px;
       font-size: 1rem;
@@ -32,163 +40,150 @@
       border-radius: 5px;
       border: none;
     }
-    iframe, video {
-      margin-top: 20px;
-      width: 90%;
-      max-width: 560px;
-      height: 315px;
+
+    iframe {
+      width: 100%;
+      height: 338px; /* keeps 16:9 ratio with 600px width */
       border: none;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      margin-top: 20px;
     }
-    form {
-      margin: 40px auto;
-      max-width: 400px;
-      background:#222;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    input[type="email"] {
-      width: calc(100% - 22px);
-      padding:10px;
-      margin-bottom:10px;
-      border-radius:5px;
-      border:none;
-      color: #111;
-    }
-    input[type="submit"] {
-      padding: 10px 20px;
-      background: linear-gradient(145deg, #bbb, #ddd); /* stylish silver */
+
+    /* Album button */
+    .album-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(145deg, #bbb, #ddd);
       border: 1px solid #999;
       border-radius: 8px;
-      cursor: pointer;
       color: #111;
       font-weight: bold;
+      text-decoration: none;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      transition: all 0.2s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
-    input[type="submit"]:hover {
+    .album-button:hover {
       background: linear-gradient(145deg, #ccc, #eee);
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.05);
       box-shadow: 0 5px 10px rgba(0,0,0,0.4);
     }
-    .success { color: #0f0; margin-top:10px; }
+
+    /* Subscribe form */
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="email"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 100%;
+      max-width: 400px;
+    }
+    form button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(145deg, #bbb, #ddd);
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      transition: all 0.3s ease-in-out;
+    }
+    form button:hover {
+      background: linear-gradient(145deg, #ccc, #eee);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    }
+
     footer {
       background: #222;
       color: #ccc;
       padding: 20px;
       margin-top: 40px;
     }
-    .footer-social {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
+
+    footer .socials {
+      margin-top: 10px;
     }
-    .footer-social img {
-      height: 30px;
-      filter: grayscale(100%) brightness(150%); /* whitish-gray effect */
-      transition: filter 0.2s ease-in-out;
+
+    footer img {
+      height: 32px;
+      margin: 0 8px;
+      vertical-align: middle;
+      filter: grayscale(100%) brightness(80%);
+      transition: all 0.3s ease-in-out;
     }
-    .footer-social img:hover {
-      filter: grayscale(0%) brightness(120%); /* show color on hover */
+
+    footer a:hover img {
+      filter: grayscale(0%) brightness(100%);
+      transform: scale(1.1);
     }
+
     footer a {
       text-decoration: none;
-      color: #ddd; /* whitish-gray links */
     }
   </style>
 </head>
 <body>
-  <header>
+  <header class="container">
     <img src="images/Borderline (album cover).jpg" alt="THE OCO XX Album Cover">
   </header>
 
-  <main>
+  <main class="container">
     <h2>Track Previews</h2>
-    <label for="trackSelect">Choose a track:</label>
-    <br>
+    <label for="trackSelect">Choose a track:</label><br>
     <select id="trackSelect" onchange="loadTrack()">
-      <option value="https://www.youtube.com/embed/wgOkZYPabbc">01 - Empire Realy</option>
+      <option value="https://www.youtube.com/embed/wgOkZYPabbc?rel=0&modestbranding=1&showinfo=0&controls=1">01 - Empire Realy</option>
       <option value="https://www.youtube.com/embed/">02 - Track Title 2</option>
       <option value="https://www.youtube.com/embed/">03 - Track Title 3</option>
-      <!-- Add more tracks up to 25 -->
     </select>
 
-    <div id="player"></div>
+    <div id="player">
+      <iframe src="https://www.youtube.com/embed/wgOkZYPabbc?rel=0&modestbranding=1&showinfo=0&controls=1" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
-    <!-- Subscriber Form -->
-    <form id="subscribe-form" action="https://formspree.io/f/myzdawky" method="POST">
-      <h3>Subscribe to our updates</h3>
+    <!-- Listen/Buy button -->
+    <a href="https://your-paid-link.com" target="_blank" class="album-button">🎧 Listen / Buy Full Album</a>
+
+    <!-- Subscribe form -->
+    <form action="https://formspree.io/f/myzdawky" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required>
-      <input type="submit" value="Subscribe">
-      <p class="success" id="success-message" style="display:none;">Thank you for subscribing!</p>
+      <button type="submit">Subscribe</button>
     </form>
   </main>
 
   <footer>
-    <div class="footer-social">
-      <img src="images/TK_logo_small.jpg" alt="Logo">
-      <a href="#" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
-      <a href="#" target="_blank"><img src="images/instagram.png" alt="Instagram"></a>
-      <a href="#" target="_blank"><img src="images/x.png" alt="X"></a>
-      <a href="#" target="_blank"><img src="images/tiktok.png" alt="TikTok"></a>
-      <a href="#" target="_blank"><img src="images/wechat.png" alt="WeChat"></a>
-      <a href="#" target="_blank"><img src="images/youtube.png" alt="YouTube"></a>
-      <a href="#" target="_blank"><img src="images/spotify.png" alt="Spotify"></a>
-      <a href="#" target="_blank"><img src="images/soundcloud.png" alt="SoundCloud"></a>
-      <a href="#" target="_blank"><img src="images/bandcamp.png" alt="Bandcamp"></a>
-    </div>
     <div>
-      <a href="about.html">About</a> |
-      <a href="contact.html">Contact</a> |
-      <a href="updates.html">Latest Updates</a>
+      <img src="images/TK_logo_small.jpg" alt="Logo">
+    </div>
+    <div class="socials">
+      <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="images/x.png" alt="X"></a>
+      <a href="#"><img src="images/tiktok.png" alt="TikTok"></a>
+      <a href="#"><img src="images/wechat.png" alt="WeChat"></a>
+      <a href="#"><img src="images/spotify.png" alt="Spotify"></a>
+      <a href="#"><img src="images/youtube.png" alt="YouTube"></a>
     </div>
   </footer>
 
   <script>
-    const trackSelect = document.getElementById("trackSelect");
-    const playerDiv = document.getElementById("player");
-
     function loadTrack() {
-      const url = trackSelect.value;
+      const url = document.getElementById("trackSelect").value;
+      const playerDiv = document.getElementById("player");
       if (url) {
-        // YouTube iframe: no autoplay, controls hidden, modest branding, no related videos
-        playerDiv.innerHTML = `<iframe src="${url}?rel=0&controls=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        playerDiv.innerHTML = `<iframe src="${url}" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
       } else {
         playerDiv.innerHTML = "";
       }
     }
-
-    // Load first track automatically on page load (no autoplay)
-    document.addEventListener('DOMContentLoaded', () => {
-      trackSelect.selectedIndex = 0;
-      loadTrack();
-    });
-
-    // Formspree success message without redirect
-    const form = document.getElementById('subscribe-form');
-    const successMsg = document.getElementById('success-message');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        successMsg.style.display = 'block';
-        form.reset();
-      } else {
-        alert('Oops! Something went wrong.');
-      }
-    });
   </script>
 </body>
 </html>
