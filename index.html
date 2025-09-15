@@ -31,16 +31,23 @@
     <div class="section-content">
       <h1>New Music</h1>
       <img src="images/album_cover.jpg" alt="Album Cover" class="album-cover">
-      <a href="#" class="listen-btn">Listen Full Album</a>
+      <a href="https://your-paid-link.com" class="album-button">🎧 Listen Full Album</a>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/wgOkZYPabbc?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>
+      </div>
+      <label for="trackSelect">Choose a track:</label><br>
+      <select id="trackSelect" onchange="loadTrack()">
+        <option value="https://www.youtube.com/embed/wgOkZYPabbc">01 - Empire Realy</option>
+        <option value="https://www.youtube.com/embed/">02 - Track Title 2</option>
+        <option value="https://www.youtube.com/embed/">03 - Track Title 3</option>
+      </select>
     </div>
   </section>
 
   <section id="videos" class="parallax" style="background-image: url('images/bg1.jpg');">
     <div class="section-content">
       <h1>Videos</h1>
-      <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1&showinfo=0&controls=1" frameborder="0" allowfullscreen></iframe>
-      </div>
+      <p>More video content coming soon!</p>
     </div>
   </section>
 
@@ -63,16 +70,26 @@
       <!-- Footer with Socials -->
       <footer class="social-footer">
         <div class="social-icons">
-          <a href="#"><img src="images/facebook_color.png" alt="Facebook"></a>
-          <a href="#"><img src="images/instagram_color.png" alt="Instagram"></a>
-          <a href="#"><img src="images/x_color.png" alt="X"></a>
-          <a href="#"><img src="images/tiktok_color.png" alt="TikTok"></a>
-          <a href="#"><img src="images/wechat_color.png" alt="WeChat"></a>
-          <a href="#"><img src="images/soundcloud_color.png" alt="SoundCloud"></a>
-          <a href="#"><img src="images/bandcamp_color.png" alt="Bandcamp"></a>
+          <a href="#" target="_blank"><img src="images/facebook_color.png" alt="Facebook"></a>
+          <a href="#" target="_blank"><img src="images/instagram_color.png" alt="Instagram"></a>
+          <a href="#" target="_blank"><img src="images/x_color.png" alt="X"></a>
+          <a href="#" target="_blank"><img src="images/tiktok_color.png" alt="TikTok"></a>
+          <a href="#" target="_blank"><img src="images/wechat_color.png" alt="WeChat"></a>
+          <a href="#" target="_blank"><img src="images/soundcloud_color.png" alt="SoundCloud"></a>
+          <a href="#" target="_blank"><img src="images/bandcamp_color.png" alt="Bandcamp"></a>
         </div>
       </footer>
     </div>
   </section>
+
+  <script>
+    function loadTrack() {
+      const url = document.getElementById("trackSelect").value;
+      const playerDiv = document.querySelector(".video-wrapper");
+      if (url) {
+        playerDiv.innerHTML = `<iframe src="${url}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>`;
+      }
+    }
+  </script>
 </body>
 </html>
