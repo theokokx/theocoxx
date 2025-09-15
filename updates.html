@@ -3,28 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Latest Updates - THE OCO XX</title>
+  <title>THE OCO XX - Album Preview</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#111; color:#eee; margin:0; padding:20px; }
-    a { color:#f4c542; text-decoration:none; }
-    header, footer { text-align:center; margin:20px 0; }
-    article { margin:20px auto; max-width:600px; padding:15px; background:#222; border-radius:8px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: #eee;
+      text-align: center;
+    }
+    header {
+      padding: 20px;
+    }
+    header img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+    h1 {
+      margin-top: 10px;
+      font-size: 2rem;
+      color: #f4c542;
+    }
+    main {
+      padding: 20px;
+    }
+    select {
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: none;
+    }
+    iframe, video {
+      margin-top: 20px;
+      width: 90%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    form {
+      margin: 40px auto;
+      max-width: 400px;
+      background:#222;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    input[type="email"] {
+      width: calc(100% - 22px);
+      padding:10px;
+      margin-bottom:10px;
+      border-radius:5px;
+      border:none;
+    }
+    input[type="submit"] {
+      padding:10px 20px;
+      background:#f4c542;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      color:#111;
+      font-weight:bold;
+    }
+    input[type="submit"]:hover { background:#e5b500; }
+    .success { color: #0f0; margin-top:10px; }
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    footer img {
+      height: 40px;
+      vertical-align: middle;
+    }
+    footer a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #f4c542;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Latest Updates</h1>
+    <img src="images/Borderline (album cover).jpg" alt="THE OCO XX Album Cover">
+    <h1>THE OCO XX</h1>
   </header>
 
   <main>
+    <h2>Track Previews</h2>
+    <label for="trackSelect">Choose a track:</label>
+    <br>
+    <select id="trackSelect" onchange="loadTrack()">
+      <option value="">-- Select a track --</option>
+      <option value="https://www.youtube.com/embed/wgOkZYPabbc">01 - Empire Realy</option>
+      <option value="https://www.youtube.com/embed/">02 - Track Title 2</option>
+      <option value="https://www.youtube.com/embed/">03 - Track Title 3</option>
+      <!-- Add more up to 25 -->
+    </select>
+
+    <div id="player"></div>
+
+    <!-- Subscriber Form -->
+    <form id="subscribe-form" action="https://formspree.io/f/myzdawky" method="POST">
+      <h3>Subscribe to our updates</h3>
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <input type="submit" value="Subscribe">
+      <p class="success" id="success-message" style="display:none;">Thank you for subscribing!</p>
+    </form>
+
+    <!-- JSON Backup Link (Optional) -->
     <article>
-      <h2>Update #1</h2>
-      <p>This is where your latest news will appear. Add updates about new releases, videos, or performances here.</p>
+      <h3>Subscriber Backup (JSON)</h3>
+      <p>Download or inspect the backup:</p>
+      <a href="subscribers.json" target="_blank">subscribers.json</a>
     </article>
   </main>
 
   <footer>
-    <p style="text-align:center;"><a href="index.html">Back to Home</a></p>
+    <img src="images/TK_logo_small.jpg" alt="Logo">
+    <div>
+      <a href="about.html">About</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="updates.html">Latest Updates</a>
+    </div>
   </footer>
+
+  <script>
+    function loadTrack() {
+      const url = document.getElementById("trackSelect").value;
+      const playerDiv = document.getElementById("player");
+      if (url) {
+        playerDiv.innerHTML = `<iframe src="${url}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      } else {
+        playerDiv.innerHTML = "";
+      }
+    }
+
+    // Show success message without redirect
+    const form = document.getElementById('subscribe-form');
+    const successMsg = document.getElementById('success-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        form.reset();
+      } else {
+        alert('Oops! Something went wrong.');
+      }
+    });
+  </script>
 </body>
 </html>
