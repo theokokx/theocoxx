@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The OCO XX</title>
+  <title>The OCO xx Project</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -31,11 +31,12 @@
   <section id="music" class="parallax" style="background-image: url('images/bg2.jpg');">
     <div class="section-content">
       <h1>New Music</h1>
-      <img src="images/album_cover.jpg" alt="Album Cover" class="album-cover">
+      <!-- Album cover stays small and centered -->
+      <img src="images/album_cover.jpg" alt="Album Cover" class="album-cover-small">
       <a href="https://your-paid-link.com" class="album-button">🎧 Listen Full Album</a>
 
-      <!-- Video player -->
-      <div class="video-wrapper">
+      <!-- Full-width video player -->
+      <div class="video-wrapper-full">
         <iframe src="https://www.youtube.com/embed/wgOkZYPabbc?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>
       </div>
 
@@ -60,7 +61,7 @@
   <section id="about" class="parallax" style="background-image: url('images/bg2.jpg');">
     <div class="section-content">
       <h1>About</h1>
-      <p>The OCO XX blends sound, vision, and storytelling into unique musical experiences. This space is dedicated to updates, releases, and creative projects.</p>
+      <p>The OCO xx Project blends sound, vision, and storytelling into unique musical experiences. This space is dedicated to updates, releases, and creative projects.</p>
     </div>
   </section>
 
@@ -75,7 +76,7 @@
       </form>
     </div>
 
-    <!-- Footer with social icons -->
+    <!-- Footer with social icons at bottom -->
     <footer class="social-footer">
       <div class="social-icons">
         <a href="#"><img src="images/facebook_color.png" alt="Facebook"></a>
@@ -92,7 +93,7 @@
   <script>
     function loadTrack() {
       const url = document.getElementById("trackSelect").value;
-      const playerDiv = document.querySelector(".video-wrapper");
+      const playerDiv = document.querySelector(".video-wrapper-full");
       if (url) {
         playerDiv.innerHTML = `<iframe src="${url}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>`;
       }
