@@ -1,32 +1,96 @@
-/* This is the key to the full-screen background */
-body, html {
+/* 1. GLOBAL STYLES - Applied to the entire website */
+/* This removes the default margin/padding the browser adds, ensuring our background image goes edge-to-edge. */
+* {
     margin: 0;
     padding: 0;
-    height: 100%;
-    font-family: 'Your Cool Font', sans-serif;
+    box-sizing: border-box; /* Makes padding and border included in an element's total width/height */
 }
 
+/* Styles for the <body> and <html> tags. This sets our base font and full height. */
+body, html {
+    height: 100%;
+    font-family: 'Helvetica', 'Arial', sans-serif; /* Fallback fonts in case the first isn't available */
+    color: #ffffff; /* White text color */
+}
+
+/* 2. HERO SECTION STYLES - The full-screen image at the top */
 .hero {
-    height: 100vh; /* 100% of the viewport height */
+    /* Layout */
+    height: 100vh; /* 100% of the viewport (screen) height */
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content VERTICALLY */
+    align-items: center;     /* Centers content HORIZONTALLY */
+    text-align: center;
+
+    /* Background */
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/background.jpg');
     background-size: cover; /* Makes the image cover the whole area */
     background-position: center;
-    background-attachment: fixed; /* This creates the "scroll-over" effect */
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    background-attachment: fixed; /* This creates the cool "scroll-over" effect */
 }
 
-/* The rest of your page content */
-main {
-    /* Your content sections will have a regular background color */
-    background-color: #121212; /* A dark theme, for example */
-    color: white;
+/* 3. NAVIGATION BAR STYLES - Inside the Hero */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: absolute; /* Puts it on top of the hero background */
+    top: 0;
+    width: 100%;
 }
-#about, #music, #contact {
-    padding: 4rem 2rem;
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none; /* Removes bullet points from the list */
+    gap: 2rem; /* Puts space between the menu items */
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none; /* Removes the underline from links */
+}
+
+/* 4. HERO CONTENT STYLES - The text in the middle of the hero section */
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+}
+
+/* 5. MAIN CONTENT STYLES - The rest of your page (About, Music, Contact) */
+main {
+    background-color: #121212; /* A dark grey, almost black, background */
+    padding: 4rem 2rem; /* Adds space inside the main element (top/bottom, left/right) */
+}
+
+/* Styles for each section inside <main> */
+section {
+    max-width: 800px; /* Prevents the text lines from becoming too long to read on big screens */
+    margin: 0 auto; /* Centers the section horizontally */
+    padding: 2rem 0; /* Adds space between sections */
+}
+
+/* 6. MEDIA QUERIES - The responsive part for mobile phones */
+/* This CSS block ONLY applies when the screen is 768px wide or less */
+@media screen and (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem; /* Smaller headline on mobile */
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    /* We'll add more mobile-specific styles here later (like for the menu) */
 }
