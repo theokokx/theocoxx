@@ -9,38 +9,69 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #111;
       color: #eee;
       text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(180deg, #1a1a1a 0%, #111 100%), 
+                  radial-gradient(circle at top left, rgba(255,255,255,0.02), transparent 70%);
+      background-blend-mode: overlay;
     }
 
     .container {
-      max-width: 600px;
+      max-width: 90%;
+      min-width: 320px;
       margin: 20px auto;
       padding: 0 10px;
     }
 
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Album cover with hover glow */
     header img {
-      width: 100%;
+      width: clamp(300px, 60%, 900px);
       height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      transition: all 0.4s ease-in-out;
+    }
+
+    header img:hover {
+      box-shadow: 0 8px 20px rgba(244, 197, 66, 0.6), 0 12px 30px rgba(244, 197, 66, 0.3);
+      transform: scale(1.02);
     }
 
     select {
       padding: 10px;
-      font-size: 1rem;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
       margin-top: 20px;
       border-radius: 5px;
       border: none;
     }
 
+    main {
+      flex: 1;
+    }
+
     /* Responsive YouTube wrapper */
     .video-wrapper {
       position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 ratio */
-      margin-top: 20px;
+      width: clamp(300px, 80%, 900px);
+      padding-bottom: 56.25%;
+      margin: 20px auto 0 auto;
     }
 
     .video-wrapper iframe {
@@ -58,7 +89,7 @@
     .album-button {
       display: inline-block;
       margin-top: 20px;
-      padding: 12px 24px;
+      padding: clamp(10px, 1vw, 20px) clamp(20px, 2vw, 28px);
       background: linear-gradient(145deg, #bbb, #ddd);
       border: 1px solid #999;
       border-radius: 8px;
@@ -66,8 +97,10 @@
       font-weight: bold;
       text-decoration: none;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
       transition: all 0.3s ease-in-out;
     }
+
     .album-button:hover {
       background: linear-gradient(145deg, #ccc, #eee);
       transform: translateY(-2px) scale(1.05);
@@ -82,15 +115,18 @@
       align-items: center;
       gap: 10px;
     }
+
     input[type="email"] {
       padding: 10px;
       border-radius: 5px;
       border: none;
       width: 100%;
       max-width: 400px;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
     }
+
     form button {
-      padding: 10px 20px;
+      padding: clamp(10px, 1vw, 20px) clamp(20px, 2vw, 28px);
       border: none;
       border-radius: 5px;
       background: linear-gradient(145deg, #bbb, #ddd);
@@ -98,8 +134,10 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
       transition: all 0.3s ease-in-out;
     }
+
     form button:hover {
       background: linear-gradient(145deg, #ccc, #eee);
       transform: translateY(-2px) scale(1.05);
@@ -113,13 +151,32 @@
       margin-top: 40px;
     }
 
+    .footer-links {
+      margin-bottom: 10px;
+      font-size: clamp(0.9rem, 1vw, 1.1rem);
+    }
+
+    .footer-links a {
+      color: #eee;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
     footer .socials {
       margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      display: flex;
     }
 
     footer img {
       height: 32px;
-      margin: 0 8px;
+      margin: 8px;
       vertical-align: middle;
       filter: grayscale(100%) brightness(80%);
       transition: all 0.3s ease-in-out;
@@ -136,7 +193,7 @@
   </style>
 </head>
 <body>
-  <header class="container">
+  <header class="container fade-in">
     <img src="images/Borderline (album cover).jpg" alt="THE OCO XX Album Cover">
   </header>
 
@@ -149,14 +206,12 @@
       <option value="https://www.youtube.com/embed/">03 - Track Title 3</option>
     </select>
 
-    <div id="player" class="video-wrapper">
+    <div id="player" class="video-wrapper fade-in">
       <iframe src="https://www.youtube.com/embed/wgOkZYPabbc?rel=0&modestbranding=1&showinfo=0&controls=1" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <!-- Listen/Buy button -->
     <a href="https://your-paid-link.com" target="_blank" class="album-button">🎧 Listen / Buy Full Album</a>
 
-    <!-- Subscribe form -->
     <form action="https://formspree.io/f/myzdawky" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required>
       <button type="submit">Subscribe</button>
@@ -164,8 +219,10 @@
   </main>
 
   <footer>
-    <div>
-      <img src="images/TK_logo_small.jpg" alt="Logo">
+    <div class="footer-links">
+      <a href="about.html">About</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="updates.html">Latest Updates</a>
     </div>
     <div class="socials">
       <a href="#"><img src="images/facebook_color.png" alt="Facebook"></a>
