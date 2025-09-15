@@ -1,0 +1,32 @@
+/* This is the key to the full-screen background */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Your Cool Font', sans-serif;
+}
+
+.hero {
+    height: 100vh; /* 100% of the viewport height */
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/background.jpg');
+    background-size: cover; /* Makes the image cover the whole area */
+    background-position: center;
+    background-attachment: fixed; /* This creates the "scroll-over" effect */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* The rest of your page content */
+main {
+    /* Your content sections will have a regular background color */
+    background-color: #121212; /* A dark theme, for example */
+    color: white;
+}
+#about, #music, #contact {
+    padding: 4rem 2rem;
+}
