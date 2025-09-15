@@ -1,96 +1,182 @@
-/* 1. GLOBAL STYLES - Applied to the entire website */
-/* This removes the default margin/padding the browser adds, ensuring our background image goes edge-to-edge. */
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Makes padding and border included in an element's total width/height */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Styles for the <body> and <html> tags. This sets our base font and full height. */
-body, html {
-    height: 100%;
-    font-family: 'Helvetica', 'Arial', sans-serif; /* Fallback fonts in case the first isn't available */
-    color: #ffffff; /* White text color */
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  color: #eee;
+  background: #111;
+  scroll-behavior: smooth;
 }
 
-/* 2. HERO SECTION STYLES - The full-screen image at the top */
-.hero {
-    /* Layout */
-    height: 100vh; /* 100% of the viewport (screen) height */
-    width: 100%;
-    display: flex;
+/* Header */
+header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+header h2 {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+nav a {
+  color: #ddd;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+/* Parallax Sections */
+.parallax {
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.parallax::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); /* Overlay darkness */
+  z-index: 0;
+}
+
+.parallax > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Content */
+.section-content {
+  max-width: 800px;
+  padding: 20px;
+}
+
+.section-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.section-content p {
+  font-size: 1.1rem;
+}
+
+/* Album Cover */
+.album-cover {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+/* Listen Button */
+.listen-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background: linear-gradient(145deg, #aaa, #555);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.listen-btn:hover {
+  background: linear-gradient(145deg, #ccc, #666);
+}
+
+/* Video */
+.video-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 450px;
+  border-radius: 12px;
+}
+
+/* Subscribe Form */
+.subscribe-form {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.subscribe-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.subscribe-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #ccc, #666);
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.subscribe-form button:hover {
+  background: linear-gradient(145deg, #ddd, #777);
+}
+
+/* Footer Social Icons */
+.social-footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.social-footer .social-icons img {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  transition: transform 0.3s;
+}
+
+.social-footer .social-icons img:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
     flex-direction: column;
-    justify-content: center; /* Centers content VERTICALLY */
-    align-items: center;     /* Centers content HORIZONTALLY */
-    text-align: center;
-
-    /* Background */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/background.jpg');
-    background-size: cover; /* Makes the image cover the whole area */
-    background-position: center;
-    background-attachment: fixed; /* This creates the cool "scroll-over" effect */
-}
-
-/* 3. NAVIGATION BAR STYLES - Inside the Hero */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    position: absolute; /* Puts it on top of the hero background */
-    top: 0;
-    width: 100%;
-}
-
-.nav-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none; /* Removes bullet points from the list */
-    gap: 2rem; /* Puts space between the menu items */
-}
-
-.nav-menu a {
-    color: white;
-    text-decoration: none; /* Removes the underline from links */
-}
-
-/* 4. HERO CONTENT STYLES - The text in the middle of the hero section */
-.hero-content h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-
-.hero-content p {
-    font-size: 1.5rem;
-}
-
-/* 5. MAIN CONTENT STYLES - The rest of your page (About, Music, Contact) */
-main {
-    background-color: #121212; /* A dark grey, almost black, background */
-    padding: 4rem 2rem; /* Adds space inside the main element (top/bottom, left/right) */
-}
-
-/* Styles for each section inside <main> */
-section {
-    max-width: 800px; /* Prevents the text lines from becoming too long to read on big screens */
-    margin: 0 auto; /* Centers the section horizontally */
-    padding: 2rem 0; /* Adds space between sections */
-}
-
-/* 6. MEDIA QUERIES - The responsive part for mobile phones */
-/* This CSS block ONLY applies when the screen is 768px wide or less */
-@media screen and (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.5rem; /* Smaller headline on mobile */
-    }
-
-    .hero-content p {
-        font-size: 1.2rem;
-    }
-
-    /* We'll add more mobile-specific styles here later (like for the menu) */
+  }
+  .video-container iframe {
+    height: 250px;
+  }
+  .section-content h1 {
+    font-size: 1.8rem;
+  }
 }
