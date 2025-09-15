@@ -10,6 +10,8 @@
       padding: 0;
       font-family: Arial, sans-serif;
       scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* fixes header overlap */
+      color: #eee;
     }
 
     /* Fixed header */
@@ -50,21 +52,102 @@
       color: #f4c542;
     }
 
-    /* Section styles */
+    /* Section base */
     section {
-      height: 100vh; /* full screen height */
+      height: 100vh; /* full viewport height */
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: 2rem;
-      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .parallax {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
     }
 
     #home   { background: black; }
-    #music  { background: url('images/bg1.jpg') center/cover fixed no-repeat; }
-    #videos { background: url('images/bg2.jpg') center/cover fixed no-repeat; }
+    #music  { background-image: url('images/bg1.jpg'); }
+    #videos { background-image: url('images/bg2.jpg'); }
     #about  { background: #222; }
-    #contact{ background: url('images/bg3.jpg') center/cover fixed no-repeat; }
+    #contact{ background-image: url('images/bg3.jpg'); }
+
+    /* YouTube responsive */
+    .video-wrapper {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      padding-bottom: 56.25%; /* 16:9 */
+      margin: 20px 0;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* Album button */
+    .album-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(145deg, #bbb, #888);
+      color: #111;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .album-button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(145deg, #ddd, #aaa);
+    }
+
+    /* Subscribe form */
+    form {
+      margin-top: 20px;
+    }
+    form input[type="email"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 250px;
+    }
+    form button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-left: 10px;
+      background: linear-gradient(145deg, #bbb, #888);
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    form button:hover {
+      background: linear-gradient(145deg, #ddd, #aaa);
+    }
+
+    /* Social icons */
+    .socials {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .socials a img {
+      width: 40px;
+      height: 40px;
+      transition: transform 0.2s ease;
+    }
+    .socials a img:hover {
+      transform: scale(1.1);
+    }
+
   </style>
 </head>
 <body>
@@ -82,11 +165,69 @@
   </header>
 
   <main>
-    <section id="home">Home Section (dummy)</section>
-    <section id="music">New Music Section (dummy)</section>
-    <section id="videos">Videos Section (dummy)</section>
-    <section id="about">About Section (dummy)</section>
-    <section id="contact">Contact Section (dummy)</section>
+    <!-- Home -->
+    <section id="home">
+      <h2>Welcome to THE OCO XX</h2>
+      <p>Scroll or use the menu to explore.</p>
+    </section>
+
+    <!-- Music -->
+    <section id="music" class="parallax">
+      <h2>Track Previews</h2>
+      <label for="trackSelect">Choose a track:</label><br>
+      <select id="trackSelect" onchange="loadTrack()">
+        <option value="https://www.youtube.com/embed/wgOkZYPabbc">01 - Empire Realy</option>
+        <option value="https://www.youtube.com/embed/">02 - Track Title 2</option>
+        <option value="https://www.youtube.com/embed/">03 - Track Title 3</option>
+      </select>
+
+      <div id="player" class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/wgOkZYPabbc?rel=0&modestbranding=1&showinfo=0&controls=1"></iframe>
+      </div>
+
+      <a href="https://your-paid-link.com" class="album-button">🎧 Listen / Buy Full Album</a>
+    </section>
+
+    <!-- Videos -->
+    <section id="videos" class="parallax">
+      <h2>Videos</h2>
+      <p>More video content coming soon!</p>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About THE OCO XX</h2>
+      <p>A short bio or background story goes here.</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="parallax">
+      <h2>Stay Updated</h2>
+      <form action="https://formspree.io/f/myzdawky" method="POST">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+
+      <div class="socials">
+        <a href="#"><img src="images/facebook_color.png" alt="Facebook"></a>
+        <a href="#"><img src="images/instagram_color.png" alt="Instagram"></a>
+        <a href="#"><img src="images/x_color.png" alt="X"></a>
+        <a href="#"><img src="images/tiktok_color.png" alt="TikTok"></a>
+        <a href="#"><img src="images/wechat_color.png" alt="WeChat"></a>
+        <a href="#"><img src="images/bandcamp_color.png" alt="Bandcamp"></a>
+        <a href="#"><img src="images/soundcloud_color.png" alt="SoundCloud"></a>
+      </div>
+    </section>
   </main>
+
+  <script>
+    function loadTrack() {
+      const url = document.getElementById("trackSelect").value;
+      const playerDiv = document.getElementById("player");
+      if (url) {
+        playerDiv.innerHTML = `<iframe src="${url}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>`;
+      }
+    }
+  </script>
 </body>
 </html>
