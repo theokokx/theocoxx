@@ -22,11 +22,6 @@
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
-    h1 {
-      margin-top: 10px;
-      font-size: 2rem;
-      color: #f4c542;
-    }
     main {
       padding: 20px;
     }
@@ -46,6 +41,32 @@
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
+    form {
+      margin: 40px auto;
+      max-width: 400px;
+      background:#222;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    input[type="email"] {
+      width: calc(100% - 22px);
+      padding:10px;
+      margin-bottom:10px;
+      border-radius:5px;
+      border:none;
+    }
+    input[type="submit"] {
+      padding:10px 20px;
+      background:#f4c542;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      color:#111;
+      font-weight:bold;
+    }
+    input[type="submit"]:hover { background:#e5b500; }
+    .success { color: #0f0; margin-top:10px; }
     footer {
       background: #222;
       color: #ccc;
@@ -59,14 +80,13 @@
     footer a {
       margin: 0 10px;
       text-decoration: none;
-      color: #f4c542;
+      color: #ddd; /* whitish-gray links */
     }
   </style>
 </head>
 <body>
   <header>
     <img src="images/Borderline (album cover).jpg" alt="THE OCO XX Album Cover">
-    <h1>THE OCO XX</h1>
   </header>
 
   <main>
@@ -74,14 +94,21 @@
     <label for="trackSelect">Choose a track:</label>
     <br>
     <select id="trackSelect" onchange="loadTrack()">
-      <option value="">-- Select a track --</option>
       <option value="https://www.youtube.com/embed/wgOkZYPabbc">01 - Empire Realy</option>
       <option value="https://www.youtube.com/embed/">02 - Track Title 2</option>
       <option value="https://www.youtube.com/embed/">03 - Track Title 3</option>
-      <!-- Add more up to 25 -->
+      <!-- Add more tracks up to 25 -->
     </select>
 
     <div id="player"></div>
+
+    <!-- Subscriber Form -->
+    <form id="subscribe-form" action="https://formspree.io/f/myzdawky" method="POST">
+      <h3>Subscribe to our updates</h3>
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <input type="submit" value="Subscribe">
+      <p class="success" id="success-message" style="display:none;">Thank you for subscribing!</p>
+    </form>
   </main>
 
   <footer>
@@ -94,16 +121,44 @@
   </footer>
 
   <script>
+    const trackSelect = document.getElementById("trackSelect");
+    const playerDiv = document.getElementById("player");
+
     function loadTrack() {
-      const url = document.getElementById("trackSelect").value;
-      const playerDiv = document.getElementById("player");
+      const url = trackSelect.value;
       if (url) {
         playerDiv.innerHTML = `<iframe src="${url}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
       } else {
         playerDiv.innerHTML = "";
       }
     }
+
+    // Load first track automatically on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      trackSelect.selectedIndex = 0; // first track
+      loadTrack();
+    });
+
+    // Show Formspree success message without redirect
+    const form = document.getElementById('subscribe-form');
+    const successMsg = document.getElementById('success-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        form.reset();
+      } else {
+        alert('Oops! Something went wrong.');
+      }
+    });
   </script>
 </body>
 </html>
-
