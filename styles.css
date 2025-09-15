@@ -1,16 +1,12 @@
 /* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Body */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
 body {
   font-family: Arial, sans-serif;
   color: #eee;
   background: #111;
-  scroll-behavior: smooth;
 }
 
 /* Header */
@@ -18,29 +14,17 @@ header {
   position: fixed;
   top: 0; left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 20px;
+  background: rgba(0,0,0,0.85);
+  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
 }
 
-header h2 {
-  font-size: 1.2rem;
-  color: #fff;
-}
-
-nav a {
-  color: #ddd;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #fff;
-}
+header h2 { color: #fff; font-size: 1.15rem; }
+nav a { color: #ddd; margin: 0 10px; text-decoration: none; font-weight: 700; }
+nav a:hover { color: #fff; }
 
 /* Parallax Sections */
 .parallax {
@@ -50,8 +34,8 @@ nav a:hover {
   background-position: center;
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -60,123 +44,86 @@ nav a:hover {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5); /* Overlay darkness */
+  background: rgba(0,0,0,0.45);
   z-index: 0;
 }
 
-.parallax > * {
-  position: relative;
-  z-index: 1;
-}
+.parallax > * { position: relative; z-index: 1; }
 
-/* Section Content */
-.section-content {
-  max-width: 800px;
-  padding: 20px;
-}
+.section-content { max-width: 1000px; padding: 20px; }
 
-.section-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
+.section-content h1 { font-size: 2.5rem; margin-bottom: 20px; }
+.section-content p { font-size: 1.1rem; }
 
-.section-content p {
-  font-size: 1.1rem;
-}
-
-/* Album Cover */
-.album-cover {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
-  margin: 20px 0;
-}
-
-/* Listen Button */
-.listen-btn {
+/* Album Cover & Button */
+.album-cover { width: 100%; max-width: 400px; border-radius: 12px; margin: 20px 0; }
+.album-button {
   display: inline-block;
-  padding: 10px 20px;
-  margin-top: 10px;
-  background: linear-gradient(145deg, #aaa, #555);
-  color: #fff;
-  border-radius: 8px;
+  background: linear-gradient(145deg, #bbb, #888);
+  color: #111;
+  padding: 12px 22px;
+  border-radius: 24px;
   text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s;
+  margin-top: 16px;
 }
 
-.listen-btn:hover {
-  background: linear-gradient(145deg, #ccc, #666);
+/* Video Wrapper */
+.video-wrapper {
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
 }
-
-/* Video */
-.video-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.video-container iframe {
-  width: 100%;
-  height: 450px;
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
   border-radius: 12px;
 }
 
 /* Subscribe Form */
 .subscribe-form {
-  margin: 20px auto;
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
   gap: 10px;
+  justify-content: center;
   flex-wrap: wrap;
 }
-
 .subscribe-form input {
   padding: 10px;
-  border: none;
   border-radius: 8px;
-  width: 250px;
+  border: none;
+  width: 260px;
 }
-
 .subscribe-form button {
-  padding: 10px 20px;
-  border: none;
+  padding: 10px 16px;
   border-radius: 8px;
-  background: linear-gradient(145deg, #ccc, #666);
-  color: #fff;
+  border: none;
+  background: #ccc;
+  color: #111;
   cursor: pointer;
-  font-weight: bold;
-}
-
-.subscribe-form button:hover {
-  background: linear-gradient(145deg, #ddd, #777);
 }
 
 /* Footer Social Icons */
 .social-footer {
-  margin-top: 40px;
+  width: 100%;
+  padding: 20px 0;
   text-align: center;
+  background: rgba(0,0,0,0.7);
 }
-
 .social-footer .social-icons img {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   margin: 0 10px;
   transition: transform 0.3s;
 }
-
-.social-footer .social-icons img:hover {
-  transform: scale(1.2);
-}
+.social-footer .social-icons img:hover { transform: scale(1.2); }
 
 /* Responsive */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-  }
-  .video-container iframe {
-    height: 250px;
-  }
-  .section-content h1 {
-    font-size: 1.8rem;
-  }
+  header { padding: 10px; flex-direction: column; gap: 8px; }
+  .section-content h1 { font-size: 1.8rem; }
 }
