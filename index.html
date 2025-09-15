@@ -86,10 +86,15 @@
       align-items: center;
       gap: 15px;
       flex-wrap: wrap;
-      margin-top: 10px;
+      margin-bottom: 10px;
     }
     .footer-social img {
       height: 30px;
+      filter: grayscale(100%) brightness(150%); /* whitish-gray effect */
+      transition: filter 0.2s ease-in-out;
+    }
+    .footer-social img:hover {
+      filter: grayscale(0%) brightness(120%); /* show color on hover */
     }
     footer a {
       text-decoration: none;
@@ -132,13 +137,12 @@
       <a href="#" target="_blank"><img src="images/x.png" alt="X"></a>
       <a href="#" target="_blank"><img src="images/tiktok.png" alt="TikTok"></a>
       <a href="#" target="_blank"><img src="images/wechat.png" alt="WeChat"></a>
-      <!-- Optional additional platforms -->
       <a href="#" target="_blank"><img src="images/youtube.png" alt="YouTube"></a>
       <a href="#" target="_blank"><img src="images/spotify.png" alt="Spotify"></a>
       <a href="#" target="_blank"><img src="images/soundcloud.png" alt="SoundCloud"></a>
       <a href="#" target="_blank"><img src="images/bandcamp.png" alt="Bandcamp"></a>
     </div>
-    <div style="margin-top: 10px;">
+    <div>
       <a href="about.html">About</a> |
       <a href="contact.html">Contact</a> |
       <a href="updates.html">Latest Updates</a>
@@ -153,4 +157,38 @@
       const url = trackSelect.value;
       if (url) {
         // YouTube iframe: no autoplay, controls hidden, modest branding, no related videos
-        playerDiv.innerHTML = `<iframe src="${url}?rel=0&controls=0&modestbranding=1" allow="accelerometer; autoplay; c
+        playerDiv.innerHTML = `<iframe src="${url}?rel=0&controls=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      } else {
+        playerDiv.innerHTML = "";
+      }
+    }
+
+    // Load first track automatically on page load (no autoplay)
+    document.addEventListener('DOMContentLoaded', () => {
+      trackSelect.selectedIndex = 0;
+      loadTrack();
+    });
+
+    // Formspree success message without redirect
+    const form = document.getElementById('subscribe-form');
+    const successMsg = document.getElementById('success-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        form.reset();
+      } else {
+        alert('Oops! Something went wrong.');
+      }
+    });
+  </script>
+</body>
+</html>
