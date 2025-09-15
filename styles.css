@@ -52,12 +52,13 @@ nav a:hover { color: #fff; }
 
 .section-content { max-width: 1000px; padding: 20px; }
 
+/* Section Titles */
 .section-content h1 { font-size: 2.5rem; margin-bottom: 20px; }
 .section-content p { font-size: 1.1rem; }
 
 /* Album Cover & Button */
 .album-cover-small {
-  width: 200px;           /* small size */
+  width: 200px;
   max-width: 90%;
   display: block;
   margin: 0 auto 20px auto;
@@ -76,8 +77,8 @@ nav a:hover { color: #fff; }
 
 /* Full-width video */
 .video-wrapper-full {
-  width: 100%;
-  max-width: 100%;
+  width: 100vw; /* full viewport width */
+  max-width: 100vw;
   margin: 20px 0;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 ratio */
@@ -115,7 +116,14 @@ nav a:hover { color: #fff; }
   cursor: pointer;
 }
 
-/* Footer Social Icons */
+/* Contact Section Footer */
+#contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
 .social-footer {
   width: 100%;
   padding: 20px 0;
@@ -123,6 +131,7 @@ nav a:hover { color: #fff; }
   background: rgba(0,0,0,0.7);
   margin-top: 20px;
 }
+
 .social-footer .social-icons img {
   width: 44px;
   height: 44px;
@@ -137,4 +146,5 @@ nav a:hover { color: #fff; }
 @media (max-width: 768px) {
   header { padding: 10px; flex-direction: column; gap: 8px; }
   .section-content h1 { font-size: 1.8rem; }
+  .video-wrapper-full { padding-bottom: 56.25%; }
 }
