@@ -55,17 +55,24 @@
       margin-bottom:10px;
       border-radius:5px;
       border:none;
+      color: #111;
     }
     input[type="submit"] {
-      padding:10px 20px;
-      background:#f4c542;
-      border:none;
-      border-radius:5px;
-      cursor:pointer;
-      color:#111;
-      font-weight:bold;
+      padding: 10px 20px;
+      background: linear-gradient(145deg, #bbb, #ddd); /* stylish silver */
+      border: 1px solid #999;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #111;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      transition: all 0.2s ease-in-out;
     }
-    input[type="submit"]:hover { background:#e5b500; }
+    input[type="submit"]:hover {
+      background: linear-gradient(145deg, #ccc, #eee);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    }
     .success { color: #0f0; margin-top:10px; }
     footer {
       background: #222;
@@ -127,19 +134,20 @@
     function loadTrack() {
       const url = trackSelect.value;
       if (url) {
-        playerDiv.innerHTML = `<iframe src="${url}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        // YouTube iframe: no autoplay, controls hidden, modest branding, no related videos
+        playerDiv.innerHTML = `<iframe src="${url}?rel=0&controls=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
       } else {
         playerDiv.innerHTML = "";
       }
     }
 
-    // Load first track automatically on page load
+    // Load first track automatically on page load (no autoplay)
     document.addEventListener('DOMContentLoaded', () => {
-      trackSelect.selectedIndex = 0; // first track
+      trackSelect.selectedIndex = 0;
       loadTrack();
     });
 
-    // Show Formspree success message without redirect
+    // Formspree success message without redirect
     const form = document.getElementById('subscribe-form');
     const successMsg = document.getElementById('success-message');
 
