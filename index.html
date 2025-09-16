@@ -3,8 +3,221 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The OCO xx Project</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>The OCO xx Project - Fixed Display</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #eee;
+      background: #111;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.85);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+
+    header h2 { color: #fff; font-size: 1.15rem; }
+    nav a { color: #ddd; margin: 0 10px; text-decoration: none; font-weight: 700; }
+    nav a:hover { color: #fff; }
+
+    /* Parallax Sections - Fixed for Apple Devices */
+    .parallax {
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      /* Fix for iOS - use transform instead of fixed */
+      background-attachment: scroll;
+    }
+
+    /* Desktop will still get parallax */
+    @media (min-width: 1024px) {
+      .parallax {
+        background-attachment: fixed;
+      }
+    }
+
+    .parallax::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.45);
+      z-index: 0;
+    }
+
+    .parallax > * { position: relative; z-index: 1; }
+
+    .section-content { 
+      max-width: 1000px; 
+      padding: 40px 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Section Titles */
+    .section-content h1 { font-size: 2.5rem; margin-bottom: 20px; }
+    .section-content p { font-size: 1.1rem; margin-bottom: 15px; }
+
+    /* Album Cover & Button */
+    .album-cover-small {
+      width: 200px;
+      max-width: 90%;
+      display: block;
+      margin: 0 auto 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    .album-button {
+      display: inline-block;
+      background: linear-gradient(145deg, #bbb, #888);
+      color: #111;
+      padding: 12px 22px;
+      border-radius: 24px;
+      text-decoration: none;
+      margin-top: 16px;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .album-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Full-width video */
+    .video-wrapper-full {
+      width: 90%;
+      max-width: 900px;
+      margin: 30px auto;
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+    }
+    .video-wrapper-full iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    }
+
+    /* Track selector */
+    .track-selector {
+      margin: 20px 0;
+    }
+    
+    .track-selector select {
+      padding: 10px 15px;
+      border-radius: 8px;
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      font-size: 1rem;
+    }
+
+    /* Subscribe Form */
+    .subscribe-form {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .subscribe-form input {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      width: 260px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .subscribe-form button {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      background: #ccc;
+      color: #111;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    
+    .subscribe-form button:hover {
+      background: #ddd;
+    }
+
+    /* Contact Section Footer */
+    #contact {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+    }
+
+    .social-footer {
+      width: 100%;
+      padding: 30px 0;
+      text-align: center;
+      background: rgba(0,0,0,0.7);
+      margin-top: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .social-footer .social-icons img {
+      width: 44px;
+      height: 44px;
+      transition: transform 0.3s;
+    }
+    .social-footer .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header { padding: 10px; flex-direction: column; gap: 8px; }
+      .section-content h1 { font-size: 1.8rem; }
+      .video-wrapper-full { width: 95%; }
+      .subscribe-form { flex-direction: column; align-items: center; }
+      .subscribe-form input { width: 100%; max-width: 300px; }
+    }
+
+    /* iOS specific fixes */
+    @supports (-webkit-touch-callout: none) {
+      .parallax {
+        background-attachment: scroll !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Fixed Header -->
@@ -40,7 +253,7 @@
       <iframe src="https://www.youtube.com/embed/wgOkZYPabbc?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>
     </div>
 
-    <div class="section-content">
+    <div class="section-content track-selector">
       <label for="trackSelect">Choose a track:</label><br>
       <select id="trackSelect" onchange="loadTrack()">
         <option value="https://www.youtube.com/embed/wgOkZYPabbc">01 - Empire Relay</option>
@@ -99,6 +312,20 @@
         playerDiv.innerHTML = `<iframe src="${url}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>`;
       }
     }
+    
+    // Additional fix for iOS background rendering
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if iOS
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      
+      if (isIOS) {
+        // Force redraw on sections to fix rendering issues
+        const sections = document.querySelectorAll('.parallax');
+        sections.forEach(section => {
+          section.style.backgroundAttachment = 'scroll';
+        });
+      }
+    });
   </script>
 </body>
 </html>
