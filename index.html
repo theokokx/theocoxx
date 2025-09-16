@@ -1,104 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The OCO xx Project</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The OCO xx Project</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Fixed Header -->
-  <header>
-    <h2><b>The OCO xx Project</b></h2>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#music">New Music</a>
-      <a href="#videos">Videos</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <header>
+        <h2>The OCO xx Project</h2>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#newmusic">New Music</a>
+            <a href="#videos">Videos</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-  <!-- Home Section -->
-  <section id="home" class="parallax" style="background-image: url('images/bg1.jpg');">
-    <div class="section-content">
-      <h1>Welcome</h1>
-      <p>Experience the latest updates and releases.</p>
-    </div>
-  </section>
+    <section id="home" class="parallax" style="background-image: url('https://source.unsplash.com/random/1920x1080?music');">
+        <div class="section-content">
+            <h1>Welcome</h1>
+            <p>Experience the latest updates and releases.</p>
+        </div>
+    </section>
 
-  <!-- Music Section -->
-  <section id="music" class="parallax" style="background-image: url('images/bg2.jpg');">
-    <div class="section-content">
-      <h1>New Music</h1>
-      <img src="images/album_cover.jpg" alt="Album Cover" class="album-cover-small">
-      <a href="https://your-paid-link.com" class="album-button">🎧 Listen Full Album</a>
-    </div>
+    <section id="newmusic" class="parallax" style="background-image: url('https://source.unsplash.com/random/1920x1080?album');">
+        <div class="section-content">
+            <h1>New Music</h1>
+            <img src="https://source.unsplash.com/random/200x200?album-cover" alt="Album cover" class="album-cover-small">
+            <a href="#" class="album-button">🎧 Listen Full Album</a>
+            <div class="track-list">
+                <p>Choose a track:</p>
+                <ul>
+                    <li>01 - Empire Realy</li>
+                    <li>02 - Track Title 2</li>
+                    <li>03 - Track Title 3</li>
+                </ul>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
 
-    <!-- Full-width video player outside the constrained container -->
-    <div class="video-wrapper-full">
-      <iframe src="https://www.youtube.com/embed/wgOkZYPabbc?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>
-    </div>
+    <section id="videos" class="parallax" style="background-image: url('https://source.unsplash.com/random/1920x1080?video');">
+        <div class="section-content">
+            <h1>Videos</h1>
+            <p>More video content coming soon!</p>
+        </div>
+    </section>
 
-    <div class="section-content">
-      <label for="trackSelect">Choose a track:</label><br>
-      <select id="trackSelect" onchange="loadTrack()">
-        <option value="https://www.youtube.com/embed/wgOkZYPabbc">01 - Empire Realy</option>
-        <option value="https://www.youtube.com/embed/">02 - Track Title 2</option>
-        <option value="https://www.youtube.com/embed/">03 - Track Title 3</option>
-      </select>
-    </div>
-  </section>
+    <section id="about" class="parallax" style="background-image: url('https://source.unsplash.com/random/1920x1080?artist');">
+        <div class="section-content">
+            <h1>About</h1>
+            <p>The OCO xx Project blends sound, vision, and storytelling into unique musical experiences. This space is dedicated to updates, releases, and creative projects.</p>
+        </div>
+    </section>
 
-  <!-- Videos Section -->
-  <section id="videos" class="parallax" style="background-image: url('images/bg1.jpg');">
-    <div class="section-content">
-      <h1>Videos</h1>
-      <p>More video content coming soon!</p>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="parallax" style="background-image: url('images/bg2.jpg');">
-    <div class="section-content">
-      <h1>About</h1>
-      <p><b>The OCO xx Project</b> blends sound, vision, and storytelling into unique musical experiences. This space is dedicated to updates, releases, and creative projects.</p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="parallax" style="background-image: url('images/bg3.jpg');">
-    <div class="section-content">
-      <h1>Contact</h1>
-      <p>Want to reach out? Subscribe, follow, or drop me a message.</p>
-      <form action="https://formspree.io/f/myzdawky" method="POST" class="subscribe-form">
-        <input type="email" name="email" placeholder="Enter your email" required>
-        <button type="submit">Subscribe</button>
-      </form>
-    </div>
-
-    <!-- Footer with social icons at bottom -->
-    <footer class="social-footer">
-      <div class="social-icons">
-        <a href="#"><img src="images/facebook_color.png" alt="Facebook"></a>
-        <a href="#"><img src="images/instagram_color.png" alt="Instagram"></a>
-        <a href="#"><img src="images/x_color.png" alt="X"></a>
-        <a href="#"><img src="images/tiktok_color.png" alt="TikTok"></a>
-        <a href="#"><img src="images/wechat_color.png" alt="WeChat"></a>
-        <a href="#"><img src="images/soundcloud_color.png" alt="SoundCloud"></a>
-        <a href="#"><img src="images/bandcamp_color.png" alt="Bandcamp"></a>
-      </div>
-    </footer>
-  </section>
-
-  <script>
-    function loadTrack() {
-      const url = document.getElementById("trackSelect").value;
-      const playerDiv = document.querySelector(".video-wrapper-full");
-      if (url) {
-        playerDiv.innerHTML = `<iframe src="${url}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>`;
-      }
-    }
-  </script>
+    <section id="contact" class="parallax" style="background-image: url('https://source.unsplash.com/random/1920x1080?contact');">
+        <div class="section-content">
+            <h1>Contact</h1>
+            <p>Want to reach out? Subscribe, follow, or drop me a message.</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <div class="social-footer">
+            <div class="social-icons">
+                <a href="#"><img src="https://source.unsplash.com/random/44x44?facebook" alt="Facebook"></a>
+                <a href="#"><img src="https://source.unsplash.com/random/44x44?twitter" alt="Twitter"></a>
+                <a href="#"><img src="https://source.unsplash.com/random/44x44?instagram" alt="Instagram"></a>
+                <a href="#"><img src="https://source.unsplash.com/random/44x44?youtube" alt="YouTube"></a>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
