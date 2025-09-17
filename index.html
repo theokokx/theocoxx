@@ -3,142 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The OCO xx Project - Fixed Parallax</title>
+  <title>The OCO xx Project - Modern Design</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Reset */
+    /* Reset and Base Styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-
+    
     body {
-      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #eee;
-      background: #111;
-      overflow-x: hidden;
+      background: #0a0a0a;
       line-height: 1.6;
+      overflow-x: hidden;
     }
-
+    
+    html { scroll-behavior: smooth; }
+    
     /* Header */
     header {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      background: rgba(0,0,0,0.92);
-      padding: 15px 20px;
+      background: rgba(10, 10, 10, 0.95);
+      padding: 15px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid #333;
-    }
-
-    header h2 { 
-      color: #fff; 
-      font-size: 1.4rem;
-      letter-spacing: 1px;
+      border-bottom: 1px solid #222;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
     
+    header h2 { 
+      color: #fff; 
+      font-size: 1.5rem;
+      letter-spacing: 1.5px;
+    }
+    
+    nav { display: flex; gap: 20px; }
+    
     nav a { 
-      color: #ddd; 
-      margin: 0 12px; 
+      color: #ccc; 
       text-decoration: none; 
       font-weight: 600;
       font-size: 0.95rem;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
+      padding: 8px 15px;
+      border-radius: 20px;
     }
     
-    nav a:hover { 
+    nav a:hover, nav a.active { 
       color: #fff; 
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.1);
     }
-
-    /* Parallax Sections - Fixed for all devices */
-    .parallax {
+    
+    /* Section Styling */
+    section {
       min-height: 100vh;
-      background-size: cover;
-      background-position: center;
-      position: relative;
+      padding: 100px 5% 80px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      text-align: center;
+      align-items: center;
+      position: relative;
       overflow: hidden;
     }
-
-    /* Background overlay */
-    .parallax::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7));
-      z-index: 1;
-    }
-
+    
     .section-content { 
-      max-width: 900px; 
-      padding: 40px 30px;
-      background: rgba(0, 0, 0, 0.7);
+      max-width: 1000px; 
+      width: 100%;
+      padding: 50px 40px;
+      background: rgba(20, 20, 20, 0.8);
       border-radius: 16px;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      margin: 20px;
-      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      text-align: center;
       z-index: 2;
     }
-
-    /* Section Titles */
-    .section-content h1 { 
-      font-size: 2.8rem; 
-      margin-bottom: 20px;
+    
+    .section-title {
+      font-size: 3rem;
+      margin-bottom: 25px;
       color: #fff;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #888, #ccc, #888);
+      border-radius: 2px;
     }
     
     .section-content p { 
       font-size: 1.2rem; 
-      margin-bottom: 25px;
-      color: #eee;
+      margin-bottom: 30px;
+      color: #ddd;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
+    
+    /* Background Patterns */
+    #home { background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 2px, #151515 2px, #151515 4px); }
+    #music { background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), radial-gradient(circle at 20% 30%, #222 0%, #151515 40%); }
+    #videos { background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), repeating-linear-gradient(-45deg, #1a1a1a 0px, #1a1a1a 2px, #151515 2px, #151515 4px); }
+    #about { background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), radial-gradient(circle at 80% 70%, #222 0%, #151515 40%); }
+    #contact { background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), repeating-linear-gradient(0deg, #1a1a1a 0px, #1a1a1a 2px, #151515 2px, #151515 4px); }
+    
     /* Album Cover & Button */
     .album-cover-small {
-      width: 220px;
-      max-width: 90%;
+      width: 240px;
       display: block;
-      margin: 0 auto 25px auto;
+      margin: 0 auto 30px auto;
       border-radius: 12px;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
       border: 2px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.4s;
+      transition: all 0.4s ease;
     }
     
     .album-cover-small:hover {
-      transform: scale(1.03);
+      transform: scale(1.03) rotate(2deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
     }
-
+    
     .album-button {
       display: inline-block;
       background: linear-gradient(145deg, #aaa, #888);
       color: #111;
-      padding: 14px 28px;
+      padding: 16px 32px;
       border-radius: 30px;
       text-decoration: none;
       margin-top: 20px;
       font-weight: bold;
       font-size: 1.1rem;
       transition: all 0.3s;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border: none;
+      cursor: pointer;
     }
-
+    
     .album-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       background: linear-gradient(145deg, #bbb, #999);
     }
-
+    
     /* Full-width video */
     .video-wrapper-full {
       width: 90%;
@@ -147,7 +166,6 @@
       position: relative;
       padding-bottom: 56.25%; /* 16:9 ratio */
       height: 0;
-      z-index: 2;
     }
     
     .video-wrapper-full iframe {
@@ -157,56 +175,58 @@
       height: 100%;
       border: none;
       border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     }
-
+    
     /* Track selector */
     .track-selector {
       margin: 30px 0;
     }
-
+    
     .track-selector label {
       display: block;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      color: #ddd;
     }
     
     .track-selector select {
-      padding: 12px 20px;
+      padding: 12px 25px;
       border-radius: 8px;
       background: #333;
       color: #fff;
       border: 1px solid #555;
       font-size: 1rem;
-      width: 250px;
+      width: 280px;
       max-width: 90%;
+      cursor: pointer;
     }
-
+    
     /* Subscribe Form */
     .subscribe-form {
-      margin-top: 25px;
+      margin-top: 30px;
       display: flex;
-      gap: 12px;
+      gap: 15px;
       justify-content: center;
       flex-wrap: wrap;
     }
     
     .subscribe-form input {
-      padding: 14px 20px;
+      padding: 15px 25px;
       border-radius: 8px;
       border: 1px solid #444;
-      width: 300px;
-      background: rgba(255, 255, 255, 0.12);
+      width: 320px;
+      background: rgba(255, 255, 255, 0.1);
       color: #fff;
       font-size: 1rem;
     }
     
     .subscribe-form input::placeholder {
-      color: #bbb;
+      color: #999;
     }
     
     .subscribe-form button {
-      padding: 14px 26px;
+      padding: 15px 30px;
       border-radius: 8px;
       border: none;
       background: #ccc;
@@ -220,67 +240,99 @@
     .subscribe-form button:hover {
       background: #ddd;
     }
-
-    /* Contact Section Footer */
+    
+    /* Social Icons */
     .social-footer {
       width: 100%;
-      padding: 40px 0;
+      padding: 50px 0 30px;
       text-align: center;
-      background: rgba(0,0,0,0.8);
-      margin-top: 40px;
-      position: relative;
-      z-index: 2;
     }
-
+    
     .social-icons {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 25px;
+      margin-top: 30px;
     }
-
+    
     .social-icons a {
-      display: inline-block;
-      transition: transform 0.3s;
-    }
-    
-    .social-icons img {
-      width: 48px;
-      height: 48px;
-      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 55px;
+      height: 55px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
     
-    .social-icons img:hover {
-      transform: scale(1.15);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    .social-icons a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #888, #ccc, #888);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-
-    /* Responsive */
+    
+    .social-icons a:hover::before {
+      opacity: 0.2;
+    }
+    
+    .social-icons a:hover {
+      transform: translateY(-5px) rotate(5deg);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    .social-icons i {
+      font-size: 24px;
+      color: #ddd;
+      z-index: 1;
+    }
+    
+    .social-icons a:hover i {
+      color: #fff;
+    }
+    
+    /* Responsive Design */
     @media (max-width: 768px) {
       header { 
-        padding: 12px 15px; 
+        padding: 12px 4%; 
         flex-direction: column; 
-        gap: 10px; 
+        gap: 12px; 
       }
       
       header h2 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+      }
+      
+      nav {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
       
       nav a {
-        margin: 0 8px;
         font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+      
+      section {
+        padding: 90px 4% 60px;
       }
       
       .section-content { 
-        padding: 30px 20px;
-        margin: 15px;
+        padding: 40px 25px;
       }
       
-      .section-content h1 { 
-        font-size: 2.2rem; 
+      .section-title { 
+        font-size: 2.4rem; 
       }
       
       .section-content p { 
@@ -289,7 +341,6 @@
       
       .video-wrapper-full { 
         width: 95%; 
-        margin: 30px auto;
       }
       
       .subscribe-form { 
@@ -302,36 +353,30 @@
         max-width: 320px; 
       }
       
-      .social-icons img {
-        width: 42px;
-        height: 42px;
+      .social-icons a {
+        width: 50px;
+        height: 50px;
       }
       
-      /* Disable parallax effect on mobile */
-      .parallax {
-        background-attachment: scroll !important;
+      .social-icons i {
+        font-size: 22px;
       }
     }
-
-    /* Background images with inline styles for each section */
-    #home {
-      background: url('images/bg1.jpg') center/cover no-repeat fixed;
+    
+    /* Animation for section entrance */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     
-    #music {
-      background: url('images/bg2.jpg') center/cover no-repeat fixed;
-    }
-    
-    #videos {
-      background: url('images/bg1.jpg') center/cover no-repeat fixed;
-    }
-    
-    #about {
-      background: url('images/bg2.jpg') center/cover no-repeat fixed;
-    }
-    
-    #contact {
-      background: url('images/bg3.jpg') center/cover no-repeat fixed;
+    .section-content {
+      animation: fadeInUp 0.8s ease-out;
     }
   </style>
 </head>
@@ -340,7 +385,7 @@
   <header>
     <h2><b>The OCO xx Project</b></h2>
     <nav>
-      <a href="#home">Home</a>
+      <a href="#home" class="active">Home</a>
       <a href="#music">New Music</a>
       <a href="#videos">Videos</a>
       <a href="#about">About</a>
@@ -349,17 +394,17 @@
   </header>
 
   <!-- Home Section -->
-  <section id="home" class="parallax">
+  <section id="home">
     <div class="section-content">
-      <h1>Welcome</h1>
-      <p>Experience the latest updates and releases.</p>
+      <h1 class="section-title">Welcome</h1>
+      <p>Experience the latest updates and releases from The OCO xx Project. Immerse yourself in a world where music meets innovation.</p>
     </div>
   </section>
 
   <!-- Music Section -->
-  <section id="music" class="parallax">
+  <section id="music">
     <div class="section-content">
-      <h1>New Music</h1>
+      <h1 class="section-title">New Music</h1>
       <img src="images/album_cover.jpg" alt="Album Cover" class="album-cover-small">
       <a href="https://your-paid-link.com" class="album-button">🎧 Listen Full Album</a>
     </div>
@@ -380,26 +425,26 @@
   </section>
 
   <!-- Videos Section -->
-  <section id="videos" class="parallax">
+  <section id="videos">
     <div class="section-content">
-      <h1>Videos</h1>
-      <p>More video content coming soon!</p>
+      <h1 class="section-title">Videos</h1>
+      <p>More video content coming soon! Stay tuned for visual experiences that complement our musical journey.</p>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="parallax">
+  <section id="about">
     <div class="section-content">
-      <h1>About</h1>
-      <p><b>The OCO xx Project</b> blends sound, vision, and storytelling into unique musical experiences. This space is dedicated to updates, releases, and creative projects.</p>
+      <h1 class="section-title">About</h1>
+      <p><b>The OCO xx Project</b> blends sound, vision, and storytelling into unique musical experiences. This space is dedicated to updates, releases, and creative projects that push the boundaries of contemporary music.</p>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="parallax">
+  <section id="contact">
     <div class="section-content">
-      <h1>Contact</h1>
-      <p>Want to reach out? Subscribe, follow, or drop me a message.</p>
+      <h1 class="section-title">Contact</h1>
+      <p>Want to reach out? Subscribe to our newsletter, follow us on social media, or drop us a message.</p>
       <form action="https://formspree.io/f/myzdawky" method="POST" class="subscribe-form">
         <input type="email" name="email" placeholder="Enter your email" required>
         <button type="submit">Subscribe</button>
@@ -409,13 +454,13 @@
     <!-- Footer with social icons -->
     <footer class="social-footer">
       <div class="social-icons">
-        <a href="#"><img src="images/facebook_color.png" alt="Facebook"></a>
-        <a href="#"><img src="images/instagram_color.png" alt="Instagram"></a>
-        <a href="#"><img src="images/x_color.png" alt="X"></a>
-        <a href="#"><img src="images/tiktok_color.png" alt="TikTok"></a>
-        <a href="#"><img src="images/wechat_color.png" alt="WeChat"></a>
-        <a href="#"><img src="images/soundcloud_color.png" alt="SoundCloud"></a>
-        <a href="#"><img src="images/bandcamp_color.png" alt="Bandcamp"></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-weixin"></i></a>
+        <a href="#"><i class="fab fa-soundcloud"></i></a>
+        <a href="#"><i class="fab fa-bandcamp"></i></a>
       </div>
     </footer>
   </section>
@@ -429,32 +474,29 @@
         playerDiv.innerHTML = `<iframe src="${url}?rel=0&modestbranding=1&showinfo=0&controls=1" allowfullscreen></iframe>`;
       }
     }
-
-    // Improved parallax effect with mobile detection
-    function initParallax() {
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      
-      if (isMobile) {
-        // For mobile devices, disable the JS parallax effect
-        document.querySelectorAll('.parallax').forEach(section => {
-          section.style.backgroundAttachment = 'scroll';
-        });
-        return;
-      }
-      
-      // Desktop parallax effect
-      document.addEventListener("scroll", function () {
-        const scrollTop = window.pageYOffset;
-        document.querySelectorAll(".parallax").forEach(section => {
-          const speed = parseFloat(section.getAttribute("data-speed")) || 0.5;
-          const offset = scrollTop * speed;
-          section.style.backgroundPosition = `center calc(50% + ${offset}px)`;
-        });
-      });
-    }
     
-    // Initialize when DOM is loaded
-    document.addEventListener('DOMContentLoaded', initParallax);
+    // Update active nav link on scroll
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav a');
+      
+      let currentSection = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 200)) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === currentSection) {
+          link.classList.add('active');
+        }
+      });
+    });
   </script>
 </body>
 </html>
