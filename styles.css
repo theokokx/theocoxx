@@ -7,6 +7,7 @@ body {
   font-family: Arial, sans-serif;
   color: #eee;
   background: #111;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -20,6 +21,7 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+  backdrop-filter: blur(5px);
 }
 
 header h2 { color: #fff; font-size: 1.15rem; }
@@ -29,7 +31,6 @@ nav a:hover { color: #fff; }
 /* Parallax Sections */
 .parallax {
   min-height: 100vh;
-  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -37,6 +38,14 @@ nav a:hover { color: #fff; }
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-attachment: scroll; /* default for mobile, JS will handle movement */
+}
+
+/* Desktop will still get background-attachment: fixed */
+@media (min-width: 1024px) {
+  .parallax {
+    background-attachment: fixed;
+  }
 }
 
 .parallax::before {
@@ -50,11 +59,17 @@ nav a:hover { color: #fff; }
 
 .parallax > * { position: relative; z-index: 1; }
 
-.section-content { max-width: 1000px; padding: 20px; }
+.section-content { 
+  max-width: 1000px; 
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
 
 /* Section Titles */
 .section-content h1 { font-size: 2.5rem; margin-bottom: 20px; }
-.section-content p { font-size: 1.1rem; }
+.section-content p { font-size: 1.1rem; margin-bottom: 15px; }
 
 /* Album Cover & Button */
 .album-cover-small {
@@ -63,6 +78,7 @@ nav a:hover { color: #fff; }
   display: block;
   margin: 0 auto 20px auto;
   border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
 .album-button {
@@ -73,13 +89,20 @@ nav a:hover { color: #fff; }
   border-radius: 24px;
   text-decoration: none;
   margin-top: 16px;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.album-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
 /* Full-width video */
 .video-wrapper-full {
-  width: 100vw; /* full viewport width */
-  max-width: 100vw;
-  margin: 20px 0;
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 ratio */
   height: 0;
@@ -91,6 +114,21 @@ nav a:hover { color: #fff; }
   height: 100%;
   border: none;
   border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+}
+
+/* Track selector */
+.track-selector {
+  margin: 20px 0;
+}
+
+.track-selector select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  font-size: 1rem;
 }
 
 /* Subscribe Form */
@@ -102,18 +140,25 @@ nav a:hover { color: #fff; }
   flex-wrap: wrap;
 }
 .subscribe-form input {
-  padding: 10px;
+  padding: 12px 15px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid #444;
   width: 260px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 .subscribe-form button {
-  padding: 10px 16px;
+  padding: 12px 20px;
   border-radius: 8px;
   border: none;
   background: #ccc;
   color: #111;
   cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.subscribe-form button:hover {
+  background: #ddd;
 }
 
 /* Contact Section Footer */
@@ -126,16 +171,22 @@ nav a:hover { color: #fff; }
 
 .social-footer {
   width: 100%;
-  padding: 20px 0;
+  padding: 30px 0;
   text-align: center;
   background: rgba(0,0,0,0.7);
   margin-top: 20px;
 }
 
+.social-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 .social-footer .social-icons img {
   width: 44px;
   height: 44px;
-  margin: 0 10px;
   transition: transform 0.3s;
 }
 .social-footer .social-icons img:hover {
@@ -146,5 +197,8 @@ nav a:hover { color: #fff; }
 @media (max-width: 768px) {
   header { padding: 10px; flex-direction: column; gap: 8px; }
   .section-content h1 { font-size: 1.8rem; }
-  .video-wrapper-full { padding-bottom: 56.25%; }
+  .video-wrapper-full { width: 95%; }
+  .subscribe-form { flex-direction: column; align-items: center; }
+  .subscribe-form input { width: 100%; max-width: 300px; }
 }
+
