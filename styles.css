@@ -28,7 +28,7 @@ header h2 { color: #fff; font-size: 1.15rem; }
 nav a { color: #ddd; margin: 0 10px; text-decoration: none; font-weight: 700; }
 nav a:hover { color: #fff; }
 
-/* Parallax Sections */
+/* Parallax Sections - Fixed for mobile */
 .parallax {
   min-height: 100vh;
   background-size: cover;
@@ -38,14 +38,19 @@ nav a:hover { color: #fff; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-attachment: scroll; /* default for mobile, JS will handle movement */
+  overflow: hidden;
 }
 
-/* Desktop will still get background-attachment: fixed */
-@media (min-width: 1024px) {
-  .parallax {
-    background-attachment: fixed;
-  }
+.parallax-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  display: none; /* Hidden by default, shown via JS for mobile */
 }
 
 .parallax::before {
@@ -54,10 +59,33 @@ nav a:hover { color: #fff; }
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.45);
-  z-index: 0;
+  z-index: 1;
 }
 
-.parallax > * { position: relative; z-index: 1; }
+.parallax > * { position: relative; z-index: 2; }
+
+/* Desktop will still get background-attachment: fixed */
+@media (min-width: 1024px) {
+  .parallax {
+    background-attachment: fixed;
+  }
+  
+  .parallax-background {
+    display: none !important;
+  }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 1023px) {
+  .parallax {
+    background-image: none !important;
+    background-attachment: scroll;
+  }
+  
+  .parallax-background {
+    display: block;
+  }
+}
 
 .section-content { 
   max-width: 1000px; 
@@ -201,4 +229,3 @@ nav a:hover { color: #fff; }
   .subscribe-form { flex-direction: column; align-items: center; }
   .subscribe-form input { width: 100%; max-width: 300px; }
 }
-
