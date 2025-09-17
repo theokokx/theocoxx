@@ -21,6 +21,7 @@
 
   <!-- Home Section -->
   <section id="home" class="parallax" style="background-image: url('images/bg1.jpg');" data-speed="0.4">
+    <div class="parallax-background"></div>
     <div class="section-content">
       <h1>Welcome</h1>
       <p>Experience the latest updates and releases.</p>
@@ -29,6 +30,7 @@
 
   <!-- Music Section -->
   <section id="music" class="parallax" style="background-image: url('images/bg2.jpg');" data-speed="0.3">
+    <div class="parallax-background"></div>
     <div class="section-content">
       <h1>New Music</h1>
       <img src="images/album_cover.jpg" alt="Album Cover" class="album-cover-small">
@@ -52,6 +54,7 @@
 
   <!-- Videos Section -->
   <section id="videos" class="parallax" style="background-image: url('images/bg1.jpg');" data-speed="0.25">
+    <div class="parallax-background"></div>
     <div class="section-content">
       <h1>Videos</h1>
       <p>More video content coming soon!</p>
@@ -60,6 +63,7 @@
 
   <!-- About Section -->
   <section id="about" class="parallax" style="background-image: url('images/bg2.jpg');" data-speed="0.2">
+    <div class="parallax-background"></div>
     <div class="section-content">
       <h1>About</h1>
       <p><b>The OCO xx Project</b> blends sound, vision, and storytelling into unique musical experiences. This space is dedicated to updates, releases, and creative projects.</p>
@@ -68,6 +72,7 @@
 
   <!-- Contact Section -->
   <section id="contact" class="parallax" style="background-image: url('images/bg3.jpg');" data-speed="0.35">
+    <div class="parallax-background"></div>
     <div class="section-content">
       <h1>Contact</h1>
       <p>Want to reach out? Subscribe, follow, or drop me a message.</p>
@@ -101,15 +106,36 @@
       }
     }
 
-    // Parallax effect for mobile
-    document.addEventListener("scroll", function () {
-      const scrollTop = window.pageYOffset;
-      document.querySelectorAll(".parallax").forEach(section => {
-        const speed = parseFloat(section.getAttribute("data-speed")) || 0.5;
-        const offset = scrollTop * speed;
-        section.style.backgroundPosition = `center calc(50% + ${offset}px)`;
+    // Improved parallax effect with mobile detection
+    function initParallax() {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // For mobile devices, use a simpler approach
+        document.querySelectorAll('.parallax-background').forEach(bg => {
+          const section = bg.parentElement;
+          const imageUrl = section.style.backgroundImage;
+          bg.style.backgroundImage = imageUrl;
+          section.style.backgroundImage = 'none';
+        });
+        
+        // Remove the scroll event for mobile to prevent issues
+        return;
+      }
+      
+      // Desktop parallax effect
+      document.addEventListener("scroll", function () {
+        const scrollTop = window.pageYOffset;
+        document.querySelectorAll(".parallax").forEach(section => {
+          const speed = parseFloat(section.getAttribute("data-speed")) || 0.5;
+          const offset = scrollTop * speed;
+          section.style.backgroundPosition = `center calc(50% + ${offset}px)`;
+        });
       });
-    });
+    }
+    
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initParallax);
   </script>
 </body>
 </html>
